@@ -22,7 +22,7 @@ st.header("Dis moi quel film tu aimes et je t'en ferai aimer d'autres")
 # second argument takes the options to show
 
 liste_films_déroulante_films = ["Tape le film que tu aimes"] + list(liste_films["primaryTitle"])
-liste_films_déroulante_genres = list(df_genres2["genres"])
+liste_films_déroulante_genres = df_genres2["genres"]
    
 with st.form("form 4"):
         col1, col2, col3, col4 = st.columns(4)
