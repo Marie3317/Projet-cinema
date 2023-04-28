@@ -4,7 +4,7 @@ import pandas as pd
 # Chargement en local en pikle
 liste_films = pd.read_pickle("liste_films.pkl.gz")
 df_genres2 = pd.read_pickle("df_genres2.pkl.gz")
-df_films_note2 = pd.read_pickle("df_films_note2.pk.gz")
+df_films_note2 = pd.read_pickle("df_films_note2.pkl.gz")
 
 # Configuration de la page
 st.set_page_config(
