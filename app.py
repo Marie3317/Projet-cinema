@@ -1,6 +1,8 @@
 import streamlit as st
-git add my_file
+import pandas as pd
 
+# Chargement en local en pikle
+liste_films = pd.read_pickle("liste_films.pkl.gz")
 
 
 st.set_page_config(
@@ -21,7 +23,7 @@ st.header("Dis moi quel film tu aimes et je t'en ferai aimer d'autres")
 with st.form("form 4"):
         col1, col2, col3, col4 = st.columns(4)
         with col1 :
-            films = st.selectbox("Films : ", ['Dis moi quel film tu aimes', 'Film1', 'film2', 'film3', liste_films])
+            films = st.selectbox("Films : ", ['Dis moi quel film tu aimes', 'Film1', 'film2', 'film3'])
             st.write("Tu as choisis : ", films, ". Bon choix ;)")
         with col2 : 
             genres = st.multiselect("Genres : ", ["Drama", "Comedy,Drama", "Drama,Romance", "Documentary", "Comedy"])
