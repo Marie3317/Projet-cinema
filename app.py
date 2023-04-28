@@ -88,9 +88,6 @@ with st.form("form 4"):
             st.text('Choisie : {}'.format(année))
         submit : st.form_submit_button("Soumettre")
 
-if submit :
-    st.writer("Tu recherches un film qui ressemble à : ",{films},"alors je te propose ces 3 films")
-
 
 # Subheader
 st.subheader("Bon visionnage !")
