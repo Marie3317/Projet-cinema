@@ -35,7 +35,7 @@ with st.form("form 4"):
             st.write("Tu as choisis", len(acteurs), 'acteur(trice)')
         with col4 : 
             année = st.slider("Année", 1913, 2023)
-            st.text('Choisie : {}'.format(année))
+            st.text('Année choisie : {}'.format(année))
         submit : st.form_submit_button("Soumettre")
 
 
