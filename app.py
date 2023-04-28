@@ -21,9 +21,9 @@ st.header("Dis moi quel film tu aimes et je t'en ferai aimer d'autres")
 
 liste_films_déroulante_films = ["Tape le film que tu aimes"] + list(liste_films["primaryTitle"])
 
-liste_films_déroulante_genres = df_genres2["genres"]
+liste_films_déroulante_genres = list(df_genres2["genres"])
 
-liste_deroulante_acteur = df_films_note2["primaryName"]
+liste_deroulante_acteur = list(df_films_note2["primaryName"])
 
 
    
