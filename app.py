@@ -20,7 +20,7 @@ st.header("Dis moi quel film tu aimes et je t'en ferai aimer d'autres")
 # first argument takes the box title
 # second argument takes the options to show
 
-liste_films_déroulante = "Dis moi quel film tu aimes", liste_films["primaryTitle"]
+liste_films_déroulante = ["Dis moi quel film tu aimes"] + liste_films["primaryTitle"]
    
 with st.form("form 4"):
         col1, col2, col3, col4 = st.columns(4)
