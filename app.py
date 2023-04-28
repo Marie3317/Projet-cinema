@@ -3,6 +3,7 @@ import pandas as pd
 
 # Chargement en local en pikle
 liste_films = pd.read_pickle("liste_films.pkl.gz")
+df_genres2 = pd.read_pickle("df_genres2.pkl.gz")
 
 
 st.set_page_config(
@@ -20,7 +21,8 @@ st.header("Dis moi quel film tu aimes et je t'en ferai aimer d'autres")
 # first argument takes the box title
 # second argument takes the options to show
 
-liste_films_déroulante = ["Tape le film que tu aimes"] + list(liste_films["primaryTitle"])
+liste_films_déroulante_films = ["Tape le film que tu aimes"] + list(liste_films["primaryTitle"])
+liste_films_déroulante_genres = ["Tape le film que tu aimes"] + list(df_genres2["genres"])
    
 with st.form("form 4"):
         col1, col2, col3, col4 = st.columns(4)
@@ -28,7 +30,7 @@ with st.form("form 4"):
             films = st.selectbox("Films : ", liste_films_déroulante)
             st.write("Tu as choisis : ", films, ". Bon choix ;)")
         with col2 : 
-            genres = st.multiselect("Genres : ", ["Drama", "Comedy,Drama", "Drama,Romance", "Documentary", "Comedy"])
+            genres = st.multiselect("Genres : ", liste_films_déroulante_genres)
             st.write("Tu as choisis", len(genres), 'genre(s)')
         with col3 : 
             acteurs = st.multiselect("Acteurs : ", ["Leo", "Alain", "Clint", "Marylin"])
