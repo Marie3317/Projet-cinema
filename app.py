@@ -1,6 +1,4 @@
 import streamlit as st
-# Chargement en local en pikle
-liste_films = pd.read_pickle("liste_films.pkl.gz")
 
 st.set_page_config(
     page_title="Ex-stream-ly Cool App",
