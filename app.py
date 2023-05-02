@@ -6,6 +6,7 @@ liste_films = pd.read_pickle("liste_films.pkl.gz")
 df_genres2 = pd.read_pickle("df_genres2.pkl.gz")
 df_films_note2 = pd.read_pickle("df_films_note2.pkl.gz")
 df_annee = pd.read_pickle("df_annee.pkl.gz")
+df_merge_final = pd.read_pickle("df_merge_final.pkl.gz")
 
 
 # Configuration de la page
@@ -65,7 +66,7 @@ from knn_from_scratch import knn, euclidean_distance
 
 def recommend_movies(movie_query, k_recommendations):
     raw_movies_data = []
-    with open('movies_recommendation_data.csv', 'r') as md:
+    with open('df_merge_final.pkl.gz', 'r') as md:
         # Discard the first line (headings)
         next(md)
 
