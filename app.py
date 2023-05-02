@@ -6,7 +6,6 @@ liste_films = pd.read_pickle("liste_films.pkl.gz")
 df_genres2 = pd.read_pickle("df_genres2.pkl.gz")
 df_films_note2 = pd.read_pickle("df_films_note2.pkl.gz")
 df_annee = pd.read_pickle("df_annee.pkl.gz")
-df_merge_final = pd.read_pickle("df_merge_final.pkl.gz")
 
 
 # Configuration de la page
@@ -59,4 +58,3 @@ if submit:
     
 # Subheader
 st.subheader("Bon visionnage !")
-
