@@ -41,7 +41,7 @@ with st.form("form 4"):
         with col4 : 
             start_year, end_year = st.select_slider("Sélectionne une plage d'année", options = df_annee["startYear"], value = (1913, 2023))
             st.write("Tu as choisis une plage d'année entre", start_year, 'et', end_year)
-        submit : submit = st.form_submit_button("Soumettre")
+        submit = st.form_submit_button("Soumettre")
 
             
 if submit:
