@@ -45,7 +45,8 @@ with st.form("form 4"):
 
             
 if submit:
-        st.write("Tu as choisis : ", films, "de genre(s)", str(genres), "avec les acteurs(trices)", str(acteurs))
+        #st.write("Tu as choisis : ", films, "qui a pour genre(s)", str(genres), "avec les acteurs(trices)", str(acteurs))
+        st.write("Tu as choisis : {}, qui a pour genre(s) {}, avec les acteurs(trices) {}".format(films, genres, acteurs))
     
     
     
