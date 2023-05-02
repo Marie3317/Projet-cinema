@@ -26,11 +26,11 @@ liste_films_deroulante_genres = list(df_genres2["genres"])
 liste_deroulante_acteur = list(df_films_note2["primaryName"])
 liste_deroulante_annee = list(df_annee["startYear"])
 
-films = st.selectbox("Films : ", liste_films_deroulante_films)
-st.write("Tu as choisis : ", films, ". Bon choix ;)")
-
 # Subheader
 st.subheader("Choisi obligatoirement ton film préféré :)")
+
+films = st.selectbox("Films : ", liste_films_deroulante_films)
+st.write("Tu as choisis : ", films, ". Bon choix ;)")
 
 # Subheader
 st.subheader("Tu peux également choisir parmi les listes de choix suivantes :)")
