@@ -39,10 +39,12 @@ with st.form("form 4"):
             acteurs = st.multiselect("Acteurs : ", liste_deroulante_acteur)
             st.write("Tu as choisis", len(acteurs), 'acteur(trice)')
         with col4 : 
-            année = st.slider("Année", 1913, 2023)
+            année = st.checkbox("Année", 1913 - 1923)
             st.text('Année choisie : {}'.format(année))
         submit : st.form_submit_button("Soumettre")
-
+            
+if année:
+    st.write('Great!')
 
 # Subheader
 st.subheader("Bon visionnage !")
