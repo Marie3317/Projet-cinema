@@ -22,11 +22,9 @@ st.header("Dis moi quel film tu aimes et je t'en ferai aimer d'autres")
  
 
 liste_films_deroulante_films = ["Tape le film que tu aimes"] + list(liste_films["primaryTitle"])
-
 liste_films_deroulante_genres = list(df_genres2["genres"])
-
 liste_deroulante_acteur = list(df_films_note2["primaryName"])
-
+liste_deroulante_annee = list(df_annee["startYear"])
 
    
 with st.form("form 4"):
@@ -41,7 +39,7 @@ with st.form("form 4"):
             acteurs = st.multiselect("Acteurs : ", liste_deroulante_acteur)
             st.write("Tu as choisis", len(acteurs), 'acteur(trice)')
         with col4 : 
-            start_color, end_color = st.select_slider("Sélectionne une plage d'année", options(df_annee["startYear"]), value=('1913', '2023'))
+            start_color, end_color = st.select_slider("Sélectionne une plage d'année", options(liste_deroulante_annee), value=('1913', '2023'))
             st.write("Tu as choisis une plage d'année entre", start_color, 'et', end_color)
         submit : st.form_submit_button("Soumettre")
             
