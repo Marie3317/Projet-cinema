@@ -30,7 +30,7 @@ films = st.selectbox("Films : ", liste_films_deroulante_films)
 st.write("Tu as choisis : ", films, ". Bon choix ;)")
    
 with st.form("form 4"):
-        col1, col2, col3 = st.columns(4)
+        col1, col2, col3 = st.columns(3)
         with col1 : 
             genres = st.multiselect(label = "Genres : ", options = liste_films_deroulante_genres)
             st.write("Tu as choisis", len(genres), 'genre(s)')
