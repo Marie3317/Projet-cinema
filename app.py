@@ -53,8 +53,6 @@ with st.form("form 4"):
 if submit:
         st.write("Tu as choisi : {}, qui a pour genre(s) {}, avec les acteurs(trices) {}, et dont les années sont comprises entre {} et {}.".format
                  (films, "/".join(genres), "/".join(acteurs), start_year, end_year))
-    
-    
-    
+        
 # Subheader
 st.subheader("Bon visionnage !")
