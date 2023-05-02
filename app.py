@@ -36,7 +36,7 @@ with st.form("form 4"):
             genres = st.multiselect(label = "Genres : ", options = liste_films_deroulante_genres)
             st.write("Tu as choisis", len(genres), 'genre(s)')
         with col3 : 
-            acteurs = st.selectbox(label = "Acteurs : ", options = liste_deroulante_acteur)
+            acteurs = st.multiselect(label = "Acteurs : ", options = liste_deroulante_acteur)
             st.write("Tu as choisis", len(acteurs), 'acteur(trice)')
         with col4 : 
             start_year, end_year = st.select_slider(label = "Sélectionne une plage d'année", options = df_annee["startYear"], value = (1913, 2023))
@@ -45,7 +45,7 @@ with st.form("form 4"):
 
             
 if submit:
-        st.write("Tu as choisis : {}, qui a pour genre(s) {}, avec les acteurs(trices) {}".format(films, "/".join(genres), acteurs))
+        st.write("Tu as choisis : {}, qui a pour genre(s) {}, avec les acteurs(trices) {}".format(films, "/".join(genres), "/".join(acteurs)))
     
     
     
