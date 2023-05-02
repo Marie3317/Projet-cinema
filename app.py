@@ -5,6 +5,8 @@ import pandas as pd
 liste_films = pd.read_pickle("liste_films.pkl.gz")
 df_genres2 = pd.read_pickle("df_genres2.pkl.gz")
 df_films_note2 = pd.read_pickle("df_films_note2.pkl.gz")
+df_annee = pd.read_pickle("df_annee.pkl.gz")
+
 
 # Configuration de la page
 st.set_page_config(
@@ -39,7 +41,7 @@ with st.form("form 4"):
             acteurs = st.multiselect("Acteurs : ", liste_deroulante_acteur)
             st.write("Tu as choisis", len(acteurs), 'acteur(trice)')
         with col4 : 
-            start_color, end_color = st.select_slider("Sélectionne une plage d'année", value=('1913', '2023'))
+            start_color, end_color = st.select_slider("Sélectionne une plage d'année", options(df_annee["startYear"]), value=('1913', '2023'))
             st.write("Tu as choisis une plage d'année entre", start_color, 'et', end_color)
         submit : st.form_submit_button("Soumettre")
             
