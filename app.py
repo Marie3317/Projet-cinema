@@ -26,19 +26,18 @@ liste_films_deroulante_genres = list(df_genres2["genres"])
 liste_deroulante_acteur = list(df_films_note2["primaryName"])
 liste_deroulante_annee = list(df_annee["startYear"])
 
+films = st.selectbox("Films : ", liste_films_deroulante_films)
+st.write("Tu as choisis : ", films, ". Bon choix ;)")
    
 with st.form("form 4"):
-        col1, col2, col3, col4 = st.columns(4)
-        with col1 :
-            films = st.selectbox("Films : ", liste_films_deroulante_films)
-            st.write("Tu as choisis : ", films, ". Bon choix ;)")
-        with col2 : 
+        col1, col2, col3 = st.columns(4)
+        with col1 : 
             genres = st.multiselect(label = "Genres : ", options = liste_films_deroulante_genres)
             st.write("Tu as choisis", len(genres), 'genre(s)')
-        with col3 : 
+        with col2 : 
             acteurs = st.multiselect(label = "Acteurs : ", options = liste_deroulante_acteur)
             st.write("Tu as choisis", len(acteurs), 'acteur(trice)')
-        with col4 : 
+        with col3 : 
             start_year, end_year = st.select_slider(label = "Sélectionne une plage d'année", options = df_annee["startYear"], value = (1913, 2023))
             st.write("Tu as choisis une plage d'année entre", start_year, 'et', end_year)
         submit = st.form_submit_button("Soumettre")
