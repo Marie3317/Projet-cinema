@@ -1,1 +1,1 @@
-import sklearn
+pip install -U scikit-learn
