@@ -33,7 +33,7 @@ liste_deroulante_annee = list(df_annee["startYear"])
 # Subheader
 st.subheader("Choisi obligatoirement ton film préféré")
 
-films = st.selectbox(liste_films_deroulante_films)
+films = st.selectbox("Films : ",liste_films_deroulante_films)
 st.write(films, ". Bon choix ;)")
 
 # Subheader
