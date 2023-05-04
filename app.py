@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 from sklearn.neighbors import NearestNeighbors
+from sklearn import datasets
 
 
 # Chargement en local en pikle
