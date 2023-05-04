@@ -44,7 +44,7 @@ films = st.selectbox("Films : ",liste_films_deroulante_films)
 st.write(films, ". Bon choix ;)")
 
 # Subheader
-st.subheader("Tu peux également choisir parmi les listes de choix suivantes")
+st.subheader("Tu peux également affiner parmi les listes de choix suivantes")
 
 
 with st.form("form 4"):
@@ -78,7 +78,7 @@ if submit:
 
 #création de la liste des suggestions à partir de la matrice
         suggestion = df_merge_finalML.iloc[matrice_des_plus_proches_voisins[1][0][1:], 1].values
-        st.write("On peut remplacer", films, "par :", suggestion)
+        st.write("On peut remplacer", films, "par :", [suggestion])
 
 # Subheader
 st.subheader("Bon visionnage !")
