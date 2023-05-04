@@ -33,8 +33,8 @@ liste_deroulante_annee = list(df_annee["startYear"])
 # Subheader
 st.subheader("Choisi obligatoirement ton film préféré")
 
-films = st.selectbox("Films : ", liste_films_deroulante_films)
-st.write("Tu as choisis : ", films, ". Bon choix ;)")
+films = st.selectbox(liste_films_deroulante_films)
+st.write(films, ". Bon choix ;)")
 
 # Subheader
 st.subheader("Tu peux également choisir parmi les listes de choix suivantes")
@@ -52,40 +52,38 @@ with st.form("form 4"):
             start_year, end_year = st.select_slider(label = "Sélectionne une plage d'année", options = df_annee["startYear"], value = (1913, 2023))
             st.write("Tu as choisis une plage d'année entre", start_year, 'et', end_year)
         submit = st.form_submit_button("Soumettre")
-
             
 if submit:
-        st.write("Tu as choisi : {}, qui a pour genre(s) {}, avec les acteurs(trices) {}, et dont les années sont comprises entre {} et {}.".format
-                 (films, "/".join(genres), "/".join(acteurs), start_year, end_year))
-        
-# Subheader
-st.subheader("Bon visionnage !")
-
-
-
 # Machine Learning
 #récupération des noms des colonnes sans prendre tconst+primaryTitle+originalTitle+averageRating+numVotes+nconst+primaryProfession+knownForTitles
-colonnes_ml = df_merge_finalML.columns[5:]
+        colonnes_ml = df_merge_finalML.columns[5:]
 
 #création de la variable X qui prends en variables explicatives toutes les colonnes numériques sauf (voir celles ci-dessus)
-X = df_merge_finalML.loc[:, colonnes_ml]
+        X = df_merge_finalML.loc[:, colonnes_ml]
 
 #initialisation du model avec 4 voisins
-distanceKNN = NearestNeighbors(n_neighbors = 4).fit(X)
+        distanceKNN = NearestNeighbors(n_neighbors = 4).fit(X)
 
 #création liste de film
-liste_du_film = [films]
+        liste_du_film = [films]
 
 #obtenir tous les renseignements du film
-df_film_choisi = df_merge_finalML[(df_merge_finalML["primaryTitle"] == films) | (df_merge_finalML["originalTitle"] == films)]
+        df_film_choisi = df_merge_finalML[(df_merge_finalML["primaryTitle"] == films) | (df_merge_finalML["originalTitle"] == films)]
 
 # on ne selectionne que les colonnes contenant des booleens sur la ligne du film choisi
-film_choisi = df_film_choisi.iloc[:, 5:]
+        film_choisi = df_film_choisi.iloc[:, 5:]
 
 #création de la matrice pour rechercher les index des plus proches voisins
-matrice_des_plus_proches_voisins = distanceKNN.kneighbors(film_choisi)
+        matrice_des_plus_proches_voisins = distanceKNN.kneighbors(film_choisi)
 
 #création de la liste des suggestions à partir de la matrice
-suggestion = df_merge_finalML.iloc[matrice_des_plus_proches_voisins[1][0][1:], 1].values
+        suggestion = df_merge_finalML.iloc[matrice_des_plus_proches_voisins[1][0][1:], 1].values
 
-st.write("On peut remplacer", films, "par :", suggestion)
+        st.write("On peut remplacer", films, "par :", suggestion)
+        
+        
+        st.write("Tu as choisi : {}, qui a pour genre(s) {}, avec les acteurs(trices) {}, et dont les années sont comprises entre {} et {}.".format
+                 (films, "/".join(genres), "/".join(acteurs), start_year, end_year))
+
+# Subheader
+st.subheader("Bon visionnage !")
