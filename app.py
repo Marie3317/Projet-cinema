@@ -34,7 +34,7 @@ liste_deroulante_annee = list(df_annee["startYear"])
 st.subheader("Choisi obligatoirement ton film préféré")
 
 #récupération des noms des colonnes sans prendre tconst+primaryTitle+originalTitle+averageRating+numVotes+nconst+primaryProfession+knownForTitles
-colonnes_ml = df_merge_finalML.columns[5:250]
+colonnes_ml = df_merge_finalML.columns[5:]
 #création de la variable X qui prends en variables explicatives toutes les colonnes numériques sauf (voir celles ci-dessus)
 X = df_merge_finalML.loc[:, colonnes_ml]
 #initialisation du model avec 4 voisins
@@ -71,7 +71,7 @@ if submit:
         df_film_choisi = df_merge_finalML[(df_merge_finalML["primaryTitle"] == films) | (df_merge_finalML["originalTitle"] == films)]
 
 # on ne selectionne que les colonnes contenant des booleens sur la ligne du film choisi
-        film_choisi = df_film_choisi.iloc[:, 5:250]
+        film_choisi = df_film_choisi.iloc[:, 5:]
 
 #création de la matrice pour rechercher les index des plus proches voisins
         matrice_des_plus_proches_voisins = distanceKNN.kneighbors(film_choisi)
