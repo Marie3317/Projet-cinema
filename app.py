@@ -64,8 +64,9 @@ with st.form("form 4"):
 st.write("Tu as choisi : {}, qui a pour genre(s) {}, avec les acteurs(trices) {}, et dont les années sont comprises entre {} et {}.".format
                  (films, "/".join(genres), "/".join(acteurs), start_year, end_year))           
 if submit:
+    
 # Machine Learning Partie 2
-#création liste de film
+#création de la liste avec le film choisi par l'utilisateur
         liste_du_film = [films]
 
 #obtenir tous les renseignements du film
