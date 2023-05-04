@@ -33,6 +33,7 @@ liste_deroulante_annee = list(df_annee["startYear"])
 # Subheader
 st.subheader("Choisi obligatoirement ton film préféré")
 
+#Machine Learning Partie 1
 #récupération des noms des colonnes sans prendre tconst+primaryTitle+originalTitle+averageRating+numVotes+nconst+primaryProfession+knownForTitles
 colonnes_ml = df_merge_finalML.columns[5:]
 #création de la variable X qui prends en variables explicatives toutes les colonnes numériques sauf (voir celles ci-dessus)
@@ -63,7 +64,7 @@ with st.form("form 4"):
 st.write("Tu as choisi : {}, qui a pour genre(s) {}, avec les acteurs(trices) {}, et dont les années sont comprises entre {} et {}.".format
                  (films, "/".join(genres), "/".join(acteurs), start_year, end_year))           
 if submit:
-# Machine Learning
+# Machine Learning Partie 2
 #création liste de film
         liste_du_film = [films]
 
