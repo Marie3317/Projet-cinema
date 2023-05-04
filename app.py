@@ -33,7 +33,10 @@ liste_deroulante_annee = list(df_annee["startYear"])
 # Subheader
 st.subheader("Choisi obligatoirement ton film préféré")
 
-
+#récupération des noms des colonnes sans prendre tconst+primaryTitle+originalTitle+averageRating+numVotes+nconst+primaryProfession+knownForTitles
+colonnes_ml = df_merge_finalML.columns[5:]
+#création de la variable X qui prends en variables explicatives toutes les colonnes numériques sauf (voir celles ci-dessus)
+X = df_merge_finalML.loc[:, colonnes_ml]
 #initialisation du model avec 4 voisins
 distanceKNN = NearestNeighbors(n_neighbors = 4).fit(X)
     
@@ -59,12 +62,6 @@ with st.form("form 4"):
             
 if submit:
 # Machine Learning
-#récupération des noms des colonnes sans prendre tconst+primaryTitle+originalTitle+averageRating+numVotes+nconst+primaryProfession+knownForTitles
-        colonnes_ml = df_merge_finalML.columns[5:]
-
-#création de la variable X qui prends en variables explicatives toutes les colonnes numériques sauf (voir celles ci-dessus)
-        X = df_merge_finalML.loc[:, colonnes_ml]
-
 #création liste de film
         liste_du_film = [films]
 
