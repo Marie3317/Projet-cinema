@@ -83,7 +83,7 @@ df_film_choisi = df_merge_finalML[(df_merge_finalML["primaryTitle"] == films) | 
 film_choisi = df_film_choisi.iloc[:, 5:]
 
 #création de la matrice pour rechercher les index des plus proches voisins
-#matrice_des_plus_proches_voisins = distanceKNN.kneighbors(film_choisi)
+matrice_des_plus_proches_voisins = distanceKNN.kneighbors(film_choisi)
 
 #création de la liste des suggestions à partir de la matrice
 suggestion = df_merge_finalML.iloc[matrice_des_plus_proches_voisins[1][0][1:], 1].values
