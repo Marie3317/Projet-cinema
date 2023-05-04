@@ -35,7 +35,7 @@ st.subheader("Choisi obligatoirement ton film préféré")
 
 
 #initialisation du model avec 4 voisins
-        distanceKNN = NearestNeighbors(n_neighbors = 4).fit(X)
+distanceKNN = NearestNeighbors(n_neighbors = 4).fit(X)
     
 films = st.selectbox("Films : ",liste_films_deroulante_films)
 st.write(films, ". Bon choix ;)")
