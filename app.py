@@ -83,7 +83,7 @@ if submit:
         st.write("On peut remplacer", films, "par :", [suggestion])
         poster = []
         movie_title_list = []
-        for movie_title in r:
+        for movie_title in suggestion:
             list_result = tmdb_movie.search(movie_title)
             movie_id = list_result[0].id
             response = requests.get('https://api.themoviedb.org/3/movie/{}?api_key={}'.format(movie_id,tmdb.api_key))
