@@ -1,11 +1,14 @@
 import streamlit as st
 import pandas as pd
+from sklearn.neighbors import NearestNeighbors
+
 
 # Chargement en local en pikle
 liste_films = pd.read_pickle("liste_films.pkl.gz")
 df_genres2 = pd.read_pickle("df_genres2.pkl.gz")
 df_films_note2 = pd.read_pickle("df_films_note2.pkl.gz")
 df_annee = pd.read_pickle("df_annee.pkl.gz")
+df_merge_finalML = pd.read_pickle("df_merge_finalML.pkl.gz")
 
 
 # Configuration de la page
@@ -56,3 +59,32 @@ if submit:
         
 # Subheader
 st.subheader("Bon visionnage !")
+
+
+
+# Machine Learning
+#récupération des noms des colonnes sans prendre tconst+primaryTitle+originalTitle+averageRating+numVotes+nconst+primaryProfession+knownForTitles
+colonnes_ml = df_merge_finalML.columns[5:]
+
+#création de la variable X qui prends en variables explicatives toutes les colonnes numériques sauf (voir celles ci-dessus)
+X = df_merge_finalML.loc[:, colonnes_ml]
+
+#initialisation du model avec 4 voisins
+distanceKNN = NearestNeighbors(n_neighbors = 4).fit(X)
+
+#création liste de film
+liste_du_film = [films]
+
+#obtenir tous les renseignements du film
+df_film_choisi = df_merge_finalML[(df_merge_finalML["primaryTitle"] == films) | (df_merge_finalML["originalTitle"] == films)]
+
+# on ne selectionne que les colonnes contenant des booleens sur la ligne du film choisi
+film_choisi = df_film_choisi.iloc[:, 5:]
+
+#création de la matrice pour rechercher les index des plus proches voisins
+matrice_des_plus_proches_voisins = distanceKNN.kneighbors(film_choisi)
+
+#création de la liste des suggestions à partir de la matrice
+suggestion = df_merge_finalML.iloc[matrice_des_plus_proches_voisins[1][0][1:], 1].values
+
+st.write("On peut remplacer", films, "par :", suggestion)
