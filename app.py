@@ -24,7 +24,7 @@ st.title("Bienvenue dans notre humble application de remmandation de film")
 # Header
 st.header("Dis moi quel film tu aimes et je t'en ferai aimer d'autres")
  
-
+#liste
 liste_films_deroulante_films = ["Tape le film que tu aimes"] + list(liste_films["primaryTitle"])
 liste_films_deroulante_genres = list(df_genres2["genres"])
 liste_deroulante_acteur = list(df_films_note2["primaryName"])
@@ -33,6 +33,10 @@ liste_deroulante_annee = list(df_annee["startYear"])
 # Subheader
 st.subheader("Choisi obligatoirement ton film préféré")
 
+
+#initialisation du model avec 4 voisins
+        distanceKNN = NearestNeighbors(n_neighbors = 4).fit(X)
+    
 films = st.selectbox("Films : ",liste_films_deroulante_films)
 st.write(films, ". Bon choix ;)")
 
@@ -60,9 +64,6 @@ if submit:
 
 #création de la variable X qui prends en variables explicatives toutes les colonnes numériques sauf (voir celles ci-dessus)
         X = df_merge_finalML.loc[:, colonnes_ml]
-
-#initialisation du model avec 4 voisins
-        distanceKNN = NearestNeighbors(n_neighbors = 4).fit(X)
 
 #création liste de film
         liste_du_film = [films]
