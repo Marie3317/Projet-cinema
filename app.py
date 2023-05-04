@@ -59,7 +59,9 @@ with st.form("form 4"):
             start_year, end_year = st.select_slider(label = "Sélectionne une plage d'année", options = df_annee["startYear"], value = (1913, 2023))
             st.write("Tu as choisis une plage d'année entre", start_year, 'et', end_year)
         submit = st.form_submit_button("Soumettre")
-            
+        
+st.write("Tu as choisi : {}, qui a pour genre(s) {}, avec les acteurs(trices) {}, et dont les années sont comprises entre {} et {}.".format
+                 (films, "/".join(genres), "/".join(acteurs), start_year, end_year))           
 if submit:
 # Machine Learning
 #création liste de film
@@ -76,12 +78,7 @@ if submit:
 
 #création de la liste des suggestions à partir de la matrice
         suggestion = df_merge_finalML.iloc[matrice_des_plus_proches_voisins[1][0][1:], 1].values
-
         st.write("On peut remplacer", films, "par :", suggestion)
-        
-        
-        st.write("Tu as choisi : {}, qui a pour genre(s) {}, avec les acteurs(trices) {}, et dont les années sont comprises entre {} et {}.".format
-                 (films, "/".join(genres), "/".join(acteurs), start_year, end_year))
 
 # Subheader
 st.subheader("Bon visionnage !")
