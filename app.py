@@ -81,15 +81,7 @@ if submit:
 #création de la liste des suggestions à partir de la matrice
         suggestion = df_merge_finalML.iloc[matrice_des_plus_proches_voisins[1][0][1:], 1].values
         st.write("On peut remplacer", films, "par :", [suggestion])
-        poster = []
-        movie_title_list = []
-        for movie_title in suggestion:
-            list_result = tmdb_movie.search(movie_title)
-            movie_id = list_result[0].id
-            response = requests.get('https://api.themoviedb.org/3/movie/{}?api_key={}'.format(movie_id,tmdb.api_key))
-            data_json = response.json()
-            poster.append('https://image.tmdb.org/t/p/original{}'.format(data_json['poster_path']))
-        movie_cards = {poster[i]: r[i] for i in range(len(r))}
+        
 
 # Subheader
 st.subheader("Bon visionnage !")
