@@ -8,5 +8,6 @@ Pour l’instant, aucun client n’a renseigné ses préférences, vous êtes da
 xxPrésentationxx
 Dataviz
 [LIEN GRAPHIQUES](https:
+
 Machine learning
-[LIEN STREAMLIT] (https://marie3317-projet-cin--app-a87j4r.streamlit.app/)
+Lien streamlit : https://marie3317-projet-cin--app-a87j4r.streamlit.app/
