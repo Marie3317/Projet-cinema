@@ -6,7 +6,7 @@ Pour aller encore plus loin, il vous demande de créer un moteur de recommandati
 Pour l’instant, aucun client n’a renseigné ses préférences, vous êtes dans une situation de cold start. Mais heureusement, le client vous donne une base de données de films basée sur la plateforme IMDb.
 
 ## Dataviz
-Datapane : file:///C:/Users/marie/Documents/Projetcin%C3%A9/Exploration%20des%20donn%C3%A9es.html
+Datapane : https://cloud.datapane.com/reports/E7oojo7/exploration-des-donn%C3%A9es/
 
 ## Machine learning
 Lien streamlit : https://marie3317-projet-cin--app-a87j4r.streamlit.app/
