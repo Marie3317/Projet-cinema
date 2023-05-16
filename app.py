@@ -5,7 +5,6 @@ from sklearn import datasets
 from sklearn.preprocessing import StandardScaler
 import requests
 
-
 # Chargement en local en pikle
 liste_films = pd.read_pickle("liste_films.pkl.gz")
 df_genres2 = pd.read_pickle("df_genres2.pkl.gz")
@@ -33,7 +32,7 @@ liste_deroulante_acteur = list(df_films_note2["primaryName"])
 liste_deroulante_annee = list(df_annee["startYear"])
 
 # Subheader
-st.subheader("Choisi ou tape ton film préféré. \nTu peux compléter ta recherche avec tes genres et acteurs/trices préférées mais ce n'est pas obligatoire 😎")
+st.subheader("Choisi ou tape ton film préféré 😎")
 
 # Machine Learning Partie 1
 # Récupération des noms des colonnes sans prendre const+primaryTitle+originalTitle+averageRating+numVotes+nconst+primaryProfession+knownForTitles
@@ -46,18 +45,9 @@ X = df_merge_finalML.loc[:, colonnes_ml]
 distanceKNN = NearestNeighbors(n_neighbors = 4, metric = "cosine", algorithm = "brute").fit(X)
 
 # Bloc de mise en forme pour utilisateur
-with st.form("form_4"):
-        col1, col2, col3 = st.columns(3)
-        with col1 : 
+with st.form("form_1"):
             films = st.selectbox("Films : ", liste_films_deroulante_films)
-        with col2 : 
-            genres = st.multiselect(label = "Genres : ", options = liste_films_deroulante_genres)
-            #st.write("Tu as choisis", genres, 'genre(s)')
-        with col3 : 
-            acteurs = st.multiselect(label = "Acteurs : ", options = liste_deroulante_acteur)
-            #st.write("Tu as choisis", acteurs, 'acteur(trice)')
-        submit = st.form_submit_button("Soumettre")
-     
+            submit = st.form_submit_button(label="Submit")
 if submit:      
 # Machine Learning Partie 2
 # Création liste de film
@@ -106,7 +96,3 @@ if submit:
 
 # Subheader
         st.subheader("Bon visionnage ! ❤")
-        
-
-# Subheader
-st.subheader("Bon visionnage !")
