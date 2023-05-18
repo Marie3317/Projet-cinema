@@ -18,25 +18,20 @@ st.set_page_config(
     page_title="Ex-stream-ly Cool App",
     layout="wide",
     page_icon="🎞️")
-
-
-
-# Mise en forme fond de page
+#Mise en forme fond de page
 page_bg_img = """
 <style>
-[data_testid = "stAppViewContainer"] {
-background-color: #e5e5f7;
-opacity: 0.8;
-background-size: 10px 10px;
-background-image: repeating-linear-gradient(45deg, #444cf7 0, #444cf7 1px, #e5e5f7 0, #e5e5f7 50%);
+[data-testid = "stAppViewContainer"] {
+background-color: #d6d6d6;
+opacity: 1;
+background-image: radial-gradient(#525253 2px, #d6d6d6 2px);
+background-size: 40px 40px;
+
 
 }
 </style>
 """
-st.markdown("", unsafe_allow_html = True)
-
-
-
+st.markdown(page_bg_img, unsafe_allow_html = True)
 
 
 # Titre
