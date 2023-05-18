@@ -19,6 +19,26 @@ st.set_page_config(
     layout="wide",
     page_icon="🎞️")
 
+
+
+# Mise en forme fond de page
+page_bg_img = """
+<style>
+[data_testid = "stAppViewContainer"] {
+background-color: #e5e5f7;
+opacity: 0.8;
+background-size: 10px 10px;
+background-image: repeating-linear-gradient(45deg, #444cf7 0, #444cf7 1px, #e5e5f7 0, #e5e5f7 50%);
+
+}
+</style>
+"""
+st.markdown("", unsafe_allow_html = True)
+
+
+
+
+
 # Titre
 st.title("🎥Bienvenue dans notre humble application de recommandation de film")
 
