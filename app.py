@@ -22,12 +22,10 @@ st.set_page_config(
 page_bg_img = """
 <style>
 [data-testid = "stAppViewContainer"] {
-background-color: #d6d6d6;
+background-color: #dcdaf4;
 opacity: 1;
-background-image: radial-gradient(#525253 2px, #d6d6d6 2px);
+background-image: radial-gradient(#525253 2px, #dcdaf4 2px);
 background-size: 40px 40px;
-
-
 }
 </style>
 """
