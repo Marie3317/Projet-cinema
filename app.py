@@ -13,23 +13,28 @@ df_annee = pd.read_pickle("df_annee.pkl.gz")
 df_merge_finalML = pd.read_pickle("df_merge_finalML.pkl.gz")
 
 
+
 # Configuration de la page
 st.set_page_config(
-    page_title="Ex-stream-ly Cool App",
+    page_title="Screeny-App",
     layout="wide",
     page_icon="🎞️")
 #Mise en forme fond de page
 page_bg_img = """
 <style>
 [data-testid = "stAppViewContainer"] {
-background-color: #dcdaf4;
-opacity: 1;
-background-image: radial-gradient(#525253 2px, #dcdaf4 2px);
-background-size: 40px 40px;
+
+background-color: #e5e5f7;
+opacity: 0.8;
+background-image: radial-gradient(#444cf7 0.5px, #e5e5f7 0.5px);
+background-size: 10px 10px;
+
 }
+
 </style>
 """
 st.markdown(page_bg_img, unsafe_allow_html = True)
+
 
 
 # Titre
@@ -49,13 +54,13 @@ st.subheader("Choisi ou tape ton film préféré 😎")
 
 # Machine Learning Partie 1
 # Récupération des noms des colonnes sans prendre const+primaryTitle+originalTitle+averageRating+numVotes+nconst+primaryProfession+knownForTitles
-colonnes_ml = df_merge_finalML.columns[7:]
+colonnes_ml = df_merge_finalML.columns[8:]
 
 # Création de la variable X qui prends en variables explicatives toutes les colonnes numériques sauf (voir celles ci-dessus)
 X = df_merge_finalML.loc[:, colonnes_ml]
 
 # Initialisation du model avec 4 voisins
-distanceKNN = NearestNeighbors(n_neighbors = 4, metric = "cosine", algorithm = "brute").fit(X)
+distanceKNN = NearestNeighbors(n_neighbors = 8, metric = "cosine", algorithm = "brute").fit(X)
 
 # Bloc de mise en forme pour utilisateur
 with st.form("form_1"):
@@ -67,22 +72,22 @@ if submit:
         liste_du_film = films
 
 # Obtenir tous les renseignements du film
-        df_film_choisi = df_merge_finalML[(df_merge_finalML["primaryTitle"] == films) | (df_merge_finalML["originalTitle"] == films)]
+        df_film_choisi = df_merge_finalML[(df_merge_finalML["primaryTitle"] == films) | (df_merge_finalML["originalTitle"] == films) | (df_merge_finalML["frenchTitle"] == films)]
 
 # On ne selectionne que les colonnes contenant des booleens sur la ligne du film choisi
-        film_choisi = df_film_choisi.iloc[:, 7:]
+        film_choisi = df_film_choisi.iloc[:, 8:]
 
 # Création de la matrice pour rechercher les index des plus proches voisins
         matrice_des_plus_proches_voisins = distanceKNN.kneighbors(film_choisi)
 
 # Création de la liste des suggestions à partir de la matrice
         suggestion = df_merge_finalML.iloc[matrice_des_plus_proches_voisins[1][0][1:], 0].values
-        st.write("Je te propose :")
+        st.subheader("Je te propose :")
 
 # Création d'une variable pour récupérer le tconst
         #tconst = df_merge_finalML.iloc[matrice_des_plus_proches_voisins[1][0][1:]]["tconst"].values
 # Création d'une variable pour récupérer le nom du film
-        nom_du_film = df_merge_finalML.loc[matrice_des_plus_proches_voisins[1][0][1:]]["primaryTitle"].values
+        nom_du_film = df_merge_finalML.loc[matrice_des_plus_proches_voisins[1][0][1:]]["originalTitle"].values
 
 # Api pour affiche de films
         url_api = "http://www.omdbapi.com/?i="
@@ -109,3 +114,4 @@ if submit:
 
 # Subheader
         st.subheader("Bon visionnage ! ❤")
+
