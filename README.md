@@ -8,7 +8,4 @@ Pour l’instant, aucun client n’a renseigné ses préférences, vous êtes da
 ## Dataviz
 Datapane : https://cloud.datapane.com/reports/E7oojo7/exploration-des-donn%C3%A9es/
 
-## Machine learning
-Lien streamlit : https://marie3317-projet-cin--app-a87j4r.streamlit.app/
-
 !!!! Projet en cours !!!!
