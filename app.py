@@ -10,8 +10,8 @@ liste_films = pd.read_pickle("liste_films.pkl.gz")
 df_genres2 = pd.read_pickle("df_genres2.pkl.gz")
 df_films_note2 = pd.read_pickle("df_films_note2.pkl.gz")
 df_annee = pd.read_pickle("df_annee.pkl.gz")
-df_merge_finalML = pd.read_pickle("df_merge_finalML.pkl.gz")
-
+df2 = pd.read_pickle("df2.pkl.gz")
+df2 = pd.read_pickle("df2.pkl.gz")
 
 
 # Configuration de la page
@@ -54,10 +54,10 @@ st.subheader("Choisis ou tape ton film préféré 😎")
 
 # Machine Learning Partie 1
 # Récupération des noms des colonnes sans prendre const+primaryTitle+originalTitle+averageRating+numVotes+nconst+primaryProfession+knownForTitles
-colonnes_ml = df_merge_finalML.columns[8:]
+colonnes_ml = df2.columns[8:]
 
 # Création de la variable X qui prends en variables explicatives toutes les colonnes numériques sauf (voir celles ci-dessus)
-X = df_merge_finalML.loc[:, colonnes_ml]
+X = df2.loc[:, colonnes_ml]
 
 # Initialisation du model avec 4 voisins
 distanceKNN = NearestNeighbors(n_neighbors = 4, metric = "cosine", algorithm = "brute").fit(X)
@@ -72,7 +72,7 @@ if submit1:
         liste_du_film = films
 
 # Obtenir tous les renseignements du film
-        df_film_choisi = df_merge_finalML[(df_merge_finalML["primaryTitle"] == films) | (df_merge_finalML["originalTitle"] == films) | (df_merge_finalML["frenchTitle"] == films)]
+        df_film_choisi = df2[(df2["primaryTitle"] == films) | (df2["originalTitle"] == films) | (df2["frenchTitle"] == films)]
 
 # On ne selectionne que les colonnes contenant des booleens sur la ligne du film choisi
         film_choisi = df_film_choisi.iloc[:, 8:]
@@ -81,11 +81,11 @@ if submit1:
         matrice_des_plus_proches_voisins = distanceKNN.kneighbors(film_choisi)
 
 # Création de la liste des suggestions à partir de la matrice
-        suggestion = df_merge_finalML.iloc[matrice_des_plus_proches_voisins[1][0][1:], 0].values
+        suggestion = df2.iloc[matrice_des_plus_proches_voisins[1][0][1:], 0].values
         st.subheader("Je te propose :")
 
 # Création d'une variable pour récupérer le nom du film
-        nom_du_film = df_merge_finalML.iloc[matrice_des_plus_proches_voisins[1][0][1:], 1].values
+        nom_du_film = df2.iloc[matrice_des_plus_proches_voisins[1][0][1:], 1].values
 
 # Création de colones
         col1 = st.columns(3)
@@ -125,7 +125,7 @@ with st.form("form2") :
 
 if submit2:
     
-    film_choisi1 = df_merge_finalML[df_merge_finalML["startYear"].between(debut_annees, fin_annees)]
+    film_choisi1 = df2[df2["startYear"].between(debut_annees, fin_annees)]
     st.subheader("Pour le(s) genre(s) choisis voici une recommandation :")
     
     if genres != []:
@@ -160,7 +160,7 @@ if submit2:
      
     
     if acteurs != "Tape ou recherche l'acteur(trice) de ton choix":
-        film_choisi3 = df_merge_finalML[df_merge_finalML[acteurs] == True]
+        film_choisi3 = df2[df2[acteurs] == True]
         st.subheader("Pour l' acteur(trice) choisi voici une recommandation :")
     
         colfilm3 = st.columns(3)   
