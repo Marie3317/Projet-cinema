@@ -11,7 +11,7 @@ df_genres2 = pd.read_pickle("df_genres2.pkl.gz")
 df_films_note2 = pd.read_pickle("df_films_note2.pkl.gz")
 df_annee = pd.read_pickle("df_annee.pkl.gz")
 df2 = pd.read_pickle("df2.pkl.gz")
-df2 = pd.read_pickle("df2.pkl.gz")
+df_merge_finalML = pd.read_pickle("df_merge_finalML.pkl.gz")
 
 
 # Configuration de la page
