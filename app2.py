@@ -48,6 +48,7 @@ liste_films_deroulante_films = ["Tape le film que tu aimes"] + list(liste_films[
 # Api pour affiche de films
 url_api = "http://www.omdbapi.com/?i="
 key_api = "&apikey=ec8d0879"
+url_imdb = "https://www.imdb.com/title/"
 
 # Subheader
 st.subheader("Choisis ou tape ton film préféré 😎")
@@ -91,16 +92,17 @@ if submit1:
         st.subheader("Je te propose :")
 
 # Création d'une variable pour récupérer le nom du film
-        nom_du_film = df2.iloc[matrice_des_plus_proches_voisins[1][0][1:], 1].values
+        nom_du_filmFR = df2.iloc[matrice_des_plus_proches_voisins[1][0][1:], 3].values
+        nom_du_filmEN = df2.iloc[matrice_des_plus_proches_voisins[1][0][1:], 1].values
 
 # Création de colones
         col1 = st.columns(3)
      
 # Boucle sur tconst et suggestion
-        for film, nom, colonnes in zip(suggestion, nom_du_film, col1):
+        for film, nomFR, nomEN, colonnes in zip(suggestion, nom_du_filmFR, nom_du_filmEN, col1):
             with colonnes :
                 url = url_api + str(film) + key_api
-                
+                url_imdb2 = url_imdb + str(film)
                 try:
                     response = requests.get(url)
                     response.raise_for_status()
@@ -109,7 +111,10 @@ if submit1:
                     st.image(url_image, width=200)
                 except requests.exceptions.RequestException as e:
                     print("Une erreur est survenue lors de l'appel à l'API :", e)
-                st.write(' - {}'.format(nom))
+                if type(nomFR) == str:
+                    st.write(f" - [{nomFR}]({url_imdb2})")
+                else:
+                    st.write(f" - [{nomEN}]({url_imdb2}) ")
 
                 
                 
@@ -130,27 +135,26 @@ with st.form("form2") :
             submit2 = st.form_submit_button(label = "Recherche")
 
 if submit2:
-    
+
     film_choisi1 = pd.merge(df_annee[df_annee['startYear'].between(debut_annees, fin_annees)], df2, how = 'left', left_on = 'tconst', right_on = 'tconst')
     st.subheader("Pour le(s) genre(s) choisis voici une recommandation :")
-    
+
     if genres != []:
         film_genres = pd.DataFrame()
         for genre in genres:
             film_genres = pd.concat([film_genres, film_choisi1[film_choisi1[genre] == True]])
         film_choisi2 = film_genres.drop_duplicates()
         top3 = film_choisi2.sort_values(by = "averageRating", ascending = False).iloc[:3, :]
-        top3_tconst = top3.iloc[:3, 0]
+        top3_tconst = top3.iloc[:3]["tconst"]
         top3_titreFR = top3.iloc[:3]["frenchTitle"]
         top3_titreEN = top3.iloc[:3]["originalTitle"]
-        top3_annees = top3.iloc[:3]["startYear"]
 
         colfilm2 = st.columns(3)   
         
-        
-        for colonne, tconst, titreFR, titreEN, annees in zip(colfilm2, top3_tconst, top3_titreFR, top3_titreEN, top3_annees):
+        for colonne, tconst, titreFR, titreEN in zip(colfilm2, top3_tconst, top3_titreFR, top3_titreEN):
             with colonne :
                 url2 = url_api + str(tconst) + key_api
+                url_imdb2 = url_imdb + str(tconst)
                 try:
                     response = requests.get(url2)
                     response.raise_for_status()
@@ -160,9 +164,9 @@ if submit2:
                 except requests.exceptions.RequestException as e:
                     print("Une erreur est survenue lors de l'appel à l'API :", e)
                 if type(titreFR) == str:
-                    st.write(f" - {titreFR} ")
+                    st.write(f" - [{titreFR}]({url_imdb2}) ")
                 else:
-                    st.write(f" - {titreEN} ")
+                    st.write(f" - [{titreEN}]({url_imdb2})")
      
     
     if acteurs != "Tape ou recherche l'acteur(trice) de ton choix":
@@ -172,16 +176,16 @@ if submit2:
         colfilm3 = st.columns(3)   
 
         top3 = film_choisi3.sort_values(by = "averageRating", ascending = False).iloc[:3, :]
-        top3_tconst = top3.iloc[:3, 0]
+        top3_tconst = top3.iloc[:3]["tconst"]
         top3_titreFR = top3.iloc[:3]["frenchTitle"]
         top3_titreEN = top3.iloc[:3]["originalTitle"]
-        top3_annees = top3.iloc[:3]["startYear"]
         
         
-        for colonne, tconst, titreFR, titreEN, annees in zip(colfilm3, top3_tconst, top3_titreFR, top3_titreEN, top3_annees):
+        for colonne, tconst, titreFR, titreEN in zip(colfilm3, top3_tconst, top3_titreFR, top3_titreEN):
             
             with colonne :
                 url2 = url_api + str(tconst) + key_api
+                url_imdb2 = url_imdb + str(tconst)
                 try:
                     response = requests.get(url2)
                     response.raise_for_status()
@@ -191,9 +195,9 @@ if submit2:
                 except requests.exceptions.RequestException as e:
                     print("Une erreur est survenue lors de l'appel à l'API :", e)
                 if type(titreFR) == str:
-                    st.write(f" - {titreFR} ")
+                    st.write(f" - [{titreFR}]({url_imdb2})")
                 else:
-                    st.write(f" - {titreEN} ")
+                    st.write(f" - [{titreEN}]({url_imdb2})")
 
 
 
