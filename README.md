@@ -8,4 +8,6 @@ Pour l’instant, aucun client n’a renseigné ses préférences, vous êtes da
 ## Dataviz
 Datapane : https://cloud.datapane.com/reports/E7oojo7/exploration-des-donn%C3%A9es/
 
+Streamlit : https://marie3317-projet-cinema-app2-eyvxbq.streamlit.app/
+
 !!!! Projet en cours !!!!
