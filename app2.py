@@ -59,7 +59,7 @@ st.subheader("Choisis ou tape ton film préféré 😎")
 scaling = MinMaxScaler()
 df2[["averageRating", "numVotes", "runtimeMinutes", "startYear"]] = scaling.fit_transform(df2[["averageRating", "numVotes", "runtimeMinutes", "startYear"]])
 
-# Récupération des noms des colonnes sans prendre const+primaryTitle+originalTitle+averageRating+numVotes+nconst+primaryProfession+knownForTitles
+# Récupération des noms des colonnes sans prendre const+primaryTitle+originalTitle+frenchTitle
 colonnes_ml = df2.columns[4:]
 
 # Création de la variable X qui prends en variables explicatives toutes les colonnes numériques sauf (voir celles ci-dessus)
