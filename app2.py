@@ -171,7 +171,7 @@ if submit2:
     
     if acteurs != "Tape ou recherche l'acteur(trice) de ton choix":
         film_choisi3 = df2[df2[acteurs] == True]
-        st.subheader("Pour l' acteur(trice) choisi voici une recommandation :")
+        st.subheader("Pour l'acteur(trice) choisi voici une recommandation :")
     
         colfilm3 = st.columns(3)   
 
