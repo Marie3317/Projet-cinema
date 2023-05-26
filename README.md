@@ -11,4 +11,4 @@ Pour l’instant, aucun client n’a renseigné ses préférences, vous êtes da
 
 Datapane : https://cloud.datapane.com/reports/E7oojo7/exploration-des-donn%C3%A9es/
 
-Streamlit : https://marie3317-projet-cinema-app2-83qf56.streamlit.app/
+Streamlit : https://marie3317-projet-cinema-application-de-recommandati-app2-gch43h.streamlit.app/
